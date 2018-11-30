@@ -33,13 +33,12 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertExpression(String expression)
+    public void insertExpression(String expression)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("expression", expression);
+        contentValues.put(HISTORIES_COLUMN_EXPRESSION, expression);
         db.insert("histories", null, contentValues);
-        return true;
     }
 
     public ArrayList<String> getAllExpressions(){
