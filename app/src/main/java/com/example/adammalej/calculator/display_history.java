@@ -17,11 +17,7 @@ public class display_history extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_history);
-        dbHelper = new DBHelper(this);
-        ArrayList<String> arrayList = dbHelper.getAllExpressions();
-        listView = (ListView) findViewById(R.id.expressionList);
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, arrayList);
-        listView.setAdapter(arrayAdapter);
+        displayHistory();
         clearHistory();
     }
 
@@ -31,8 +27,18 @@ public class display_history extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dbHelper.deleteAllRow();
+                displayHistory();
             }
         });
+    }
+
+    private void displayHistory()
+    {
+        dbHelper = new DBHelper(display_history.this);
+        ArrayList<String> arrayList = dbHelper.getAllExpressions();
+        listView = (ListView) findViewById(R.id.expressionList);
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(display_history.this, android.R.layout.simple_list_item_1, arrayList);
+        listView.setAdapter(arrayAdapter);
     }
 
 
