@@ -41,6 +41,12 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert("histories", null, contentValues);
     }
 
+    public void deleteAllRow()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from " + HISTORIES_TABLE_NAME);
+    }
+
     public ArrayList<String> getAllExpressions(){
         ArrayList<String> arrayList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
